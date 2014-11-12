@@ -8,7 +8,7 @@ class addlinks (
   $path_to_facter               = '/opt/puppet/bin/facter',
   $path_to_facter_symlink       = '/usr/bin/facter',
   $ensure_facter_symlink        = true,
-  $local_factor_package_name    = 'factor',
+  $local_facter_package_name    = 'facter',
   $manage_local_puppet_package  = true,
   $ensure_local_puppet_package  = 'absent',
   $path_to_puppet               = '/opt/puppet/bin/puppet',
@@ -28,14 +28,14 @@ class addlinks (
     $manage_local_facter_package_real = $manage_local_facter_package
   }
 
-  if type($local_factor_package_name) != 'String' and type($local_factor_package_name) != 'Array' {
+  if type($local_facter_package_name) != 'String' and type($local_facter_package_name) != 'Array' {
     fail('facter::package_name must be a string or an array.')
   }
 
 
   if $manage_local_facter_package_real == true {
 
-    package { $local_factor_package_name:
+    package { $local_facter_package_name:
       ensure => $ensure_local_facter_package,
     }
   }
